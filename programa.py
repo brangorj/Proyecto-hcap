@@ -80,8 +80,11 @@ def imagenconv(mat,filtro):
 
 #Filtro que se va a aplicar
 fil = [[1,1,1],[1,0,1],[1,1,1]]
+
+i = input('Nombre de imagen a prcesar [Con extencion]: ')
+
 #Imagen a procesar
-imagen = cv2.imread('lego.png')
+imagen = cv2.imread(i)
 #Tamaño de la imagen
 img = imagen.shape
 #Matriz en escala de grises
