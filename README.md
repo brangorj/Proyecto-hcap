@@ -8,4 +8,4 @@
 #- Con convolucion
 #- Con convolucion y padding
 
-#El filtro se modifica dentro del codigo
+#El filtro se modifica dentro del codigo tomando las diferentes indicaciones
