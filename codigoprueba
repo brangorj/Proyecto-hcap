@@ -1,1 +1,27 @@
-def 1
+import cv2
+import numpy as np
+
+def escaladegrises(x,y):
+  matriz=np.zeros([x[0],x[1]])
+  for i in range(len(matriz)):
+    for j in range (len(matriz[0])):
+      valor=y[i][j]
+      promedio =sum(valor)/3
+      matriz[f][c] = total
+  cv2.imwrite("Escaladegrises.jpg",matriz)
+  return matriz
+ 
+ def BN(sin):
+  matrizbn=np.zeros([len(sin),len(sin[0]))
+  for i in range(len(sin)):
+    for j in range(len(sin[0])):
+      valor=sin[i][j]
+      if valor > 127.5:
+        matrizbn[i][j]=255
+      else:
+        matrizbn[i][j]=0
+  cv2.imwrite("Blancoynegro.jpg",matrizbn)
+  return matrizbn
+  
+  
+  
