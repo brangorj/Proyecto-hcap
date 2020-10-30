@@ -3,19 +3,24 @@ import cv2
 
 
 def imagenGris(shape,image):
-
+#se crea la matriz de zeros
     matriz = np.zeros([shape[0],shape[1]])
+#Interaccion por cada elemento de los datos de la imagen para hacerla en escala de grises
     for f in range(len(matriz)):
         for c in range(len(matriz[0])):
             val = image[f][c]
             total = sum(val)/3
             matriz[f][c] = total
+#Crea la imagen en escala de grises
     cv2.imwrite('Gris.jpg',matriz)
+#Regresa la matriz resultante
     return matriz
                                                                         
 
 def imagenBN(mat):
+#Crea la matriz de zeros
     matrizbn = np.zeros([len(mat),len(mat[0])])
+#Revisa cada elemento y lo pasa a valores ded 0 o 255
     for f in range(len(mat)):
         for c in range(len(mat[0])):
             v = mat[f][c]
@@ -23,7 +28,9 @@ def imagenBN(mat):
                 matrizbn[f][c] = 0
             else:
                 matrizbn[f][c] = 255
+#Crea la imagen en blanco y negro
     cv2.imwrite('BN.jpg',matrizbn)
+#Regresa la matriz de valores en blanco y negro
     return matrizbn
 
 def imagenConvPadd(mat,filtro):
