@@ -34,12 +34,16 @@ def imagenBN(mat):
     return matrizbn
 
 def imagenConvPadd(mat,filtro):
+    #Se crea la matriz de 0
     matriz_padd = np.zeros([len(mat)+2,len(mat[0])+2])
     tes = matriz_padd
+    #Con la copia de la matriz de 0 se empiezan a meter los datos de la imagen para que tenga su
+    #marco de 0
     for f in range(len(mat)):
         for c in range(len(mat[0])):
             tes[f+1][c+1] = mat[f][c]
-                                                                                                                                                                                                                                
+    
+    #Se hace la convolucion
     for f in range(len(mat)-2):
         for c in range(len(mat[0])-2):
             val1 = (tes[f][c]*filtro[0][0])+(tes[f][c+1]*filtro[0][1])+(tes[f][c+2]*filtro[0][2])
@@ -50,11 +54,15 @@ def imagenConvPadd(mat,filtro):
                 matriz_padd[f][c] = 255
             else:    
                 matriz_padd[f][c] = suma
+    #Se crea la imagen con convolucion y padding
     cv2.imwrite('Imagen_Convolucion_Con_Padding.jpg',matriz_padd)
+    #Regresa la matriz resultante
     return matriz_padd
 
 def imagenconv(mat,filtro):
+    #Se crea la matriz de 0
     resultado = np.zeros([len(mat)-2,len(mat[0])-2])
+    #Se hace la convolucion
     for f in range(len(resultado)):
         for c in range(len(resultado[0])):
             val1 = (mat[f][c]*filtro[0][0])+(mat[f][c+1]*filtro[0][1])+(mat[f][c+2]*filtro[0][2])
@@ -65,16 +73,23 @@ def imagenconv(mat,filtro):
                 resultado[f][c] = 255
             else:    
                 resultado[f][c] = suma
+    #Se crea la imagen con convolucion
     cv2.imwrite('Imagen_Convolucion_Sin_Padding.jpg',resultado)
+    #Regresa la matriz con convolucion
     return resultado 
 
-
+#Filtro que se va a aplicar
 fil = [[1,1,1],[1,0,1],[1,1,1]]
-
+#Imagen a procesar
 imagen = cv2.imread('lego.png')
+#Tamaño de la imagen
 img = imagen.shape
+#Matriz en escala de grises
 gris = imagenGris(img,imagen)
+#Matriz en blanco y negro
 bn = imagenBN(gris)
+#Matriz con convolucion y pading
 conv_padd = imagenConvPadd(gris, fil)
+#Matriz con convolucion
 conv = imagenconv(gris, fil)
 
